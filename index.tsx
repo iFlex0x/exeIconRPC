@@ -128,6 +128,8 @@ async function claimGame(exePath: string) {
         });
         const name = (game as { name?: unknown; })?.name;
         if (typeof name !== "string" || !name || isOptedOut(exePath) || dead) return;
+        // Discord recognizes this game (it carries an app id), its artwork stays.
+        if ((game as { id?: unknown; })?.id != null) return;
         const url = await iconFor(exePath);
         if (dead || !url || !isRunning(exePath) || isOptedOut(exePath)) return;
         const socketId = socketFor(exePath);
@@ -158,6 +160,7 @@ function onRunningGamesChange() {
     for (const game of RunningGameStore.getRunningGames() ?? []) {
         const exePath = (game as { exePath?: unknown; })?.exePath;
         if (typeof exePath !== "string" || !exePath || isOptedOut(exePath)) continue;
+        if ((game as { id?: unknown; })?.id != null) continue;
         const key = exePath.toLowerCase();
         seen.add(key);
         if (!liveByPath.has(key)) void claimGame(exePath);
