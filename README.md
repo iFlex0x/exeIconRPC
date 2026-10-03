@@ -3,12 +3,13 @@
 Vencord userplugin. Shows the exe icon on your Rich Presence for games Discord doesn't recognize. Manually added exes normally show up with a blank icon, this fixes that.
 When a game is detected the plugin grabs the exe icon, hosts it, proxies it through Discord, and swaps the stock activity for an identical one with the icon attached. 
 Needs Discord Desktop or Vesktop (reading exe icons needs native code, vesktop not tested), plus an Application ID pasted in settings. Make one at the Discord Developer Portal, 
+Disclaimer: icons go through catbox first so Discord can fetch them, then Discord keeps its own copy. 
 
 
 Install:
 
 
-You need to build Vencord from source, the installer build can't load custom plugins. If you haven't, follow the [installing from source](https://docs.vencord.dev/installing/) guide first.
+You need to build Vencord from source, the installer build can't load custom plugins. If you haven't, follow the [installing from source](https://docs.vencord.dev/installing/) guide first, then the [install guide](https://docs.vencord.dev/installing/custom-plugins/).
 
 
 1. Clone this repo into `src/userplugins` in your Vencord repo folder 
