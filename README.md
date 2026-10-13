@@ -14,7 +14,7 @@ You need to build Vencord from source, the installer build can't load custom plu
 
 1. Clone this repo into `src/userplugins` in your Vencord repo folder so it lands at `src/userplugins/exeIconRPC`
 2. Rebuild Vencord and reinject, 
-3. Enable ExeIconRPC, paste your App ID, add your exe under Registered Games
+3. Enable ExeIconRPC, paste your App ID, add your exe under Discord Settings > Registered Games
 
 To update later: `git pull` inside `src/userplugins/exeIconRPC`, rebuild again. 
 Icons are cached per exe, Clear Icon Cache in settings wipes them. Exes you want left alone go in the opt-out setting.

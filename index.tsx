@@ -74,11 +74,7 @@ function isOptedOut(exePath: string) {
 }
 
 function isRunning(exePath: string) {
-    const needle = exePath.toLowerCase();
-    return RunningGameStore.getRunningGames().some(g => {
-        const p = (g as { exePath?: unknown; })?.exePath;
-        return typeof p === "string" && p.toLowerCase() === needle;
-    });
+    return gameOf(exePath) != null;
 }
 
 const liveByPath = new Map<string, { socketId: string; name: string; exePath: string; }>();
@@ -88,6 +84,14 @@ let dead = false;
 
 function socketFor(exePath: string) {
     return `ExeIconRPC_${exePath.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`;
+}
+
+function gameOf(exePath: string) {
+    const key = exePath.toLowerCase();
+    return RunningGameStore.getRunningGames().find(g => {
+        const p = (g as { exePath?: unknown; })?.exePath;
+        return typeof p === "string" && p.toLowerCase() === key;
+    });
 }
 
 async function getIcon(exePath: string) {
@@ -123,10 +127,7 @@ async function claim(exePath: string) {
     if (busy.has(key) || liveByPath.has(key)) return;
     busy.add(key);
     try {
-        const game = RunningGameStore.getRunningGames().find(g => {
-            const p = (g as { exePath?: unknown; })?.exePath;
-            return typeof p === "string" && p.toLowerCase() === key;
-        });
+        const game = gameOf(exePath);
         const name = (game as { name?: unknown; })?.name;
         if (typeof name !== "string" || !name || isOptedOut(exePath) || dead) return;
         if ((game as { id?: unknown; })?.id != null) return;
