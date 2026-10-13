@@ -6,13 +6,15 @@
 
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
+import { BaseText } from "@components/BaseText";
 import { Button } from "@components/Button";
 import { ErrorCard } from "@components/ErrorCard";
 import { Link } from "@components/Link";
+import { Paragraph } from "@components/Paragraph";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType, PluginNative } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
-import { FluxDispatcher, Forms, React, RunningGameStore, showToast } from "@webpack/common";
+import { FluxDispatcher, React, RunningGameStore, showToast } from "@webpack/common";
 
 const logger = new Logger("ExeIconRPC");
 const Native = VencordNative.pluginHelpers.ExeIconRPC as PluginNative<typeof import("./native")>;
@@ -200,13 +202,13 @@ export default definePlugin({
         return <>
             {!appID && (
                 <ErrorCard style={{ padding: "1em" }}>
-                    <Forms.FormTitle>Notice</Forms.FormTitle>
-                    <Forms.FormText>Paste an Application ID below, the plugin needs it to work. Without one it stays idle.</Forms.FormText>
+                    <BaseText size="md" weight="bold">Notice</BaseText>
+                    <Paragraph>Paste an Application ID below, the plugin needs it to work. Without one it stays idle.</Paragraph>
                 </ErrorCard>
             )}
-            <Forms.FormText>
+            <Paragraph>
                 Make an application at <Link href="https://discord.com/developers/applications">Discord Developer Portal</Link> and paste its ID into the App ID setting.
-            </Forms.FormText>
+            </Paragraph>
         </>;
     },
 
