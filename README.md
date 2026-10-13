@@ -1,5 +1,7 @@
 ## exeIconRPC
 
+Discontinued. Vencord staff flagged this as unsafe, do not use. Repo stays up for reference only.
+
 Vencord userplugin. Shows the exe icon on your Rich Presence for games/apps Discord doesn't recognize.
 
 <img width="1920" height="1080" alt="smthing" src="https://github.com/user-attachments/assets/cabdabe9-e76d-46f2-8547-8e8b119781c0" />
